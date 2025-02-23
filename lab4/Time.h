@@ -1,4 +1,4 @@
-#ifndef TIME_H
+п»ї#ifndef TIME_H
 #define TIME_H
 
 #include <iostream>
@@ -8,31 +8,31 @@ using namespace std;
 
 class Time {
 private:
-    short int hours;   // Часы (0-23)
-    short int minutes; // Минуты (0-59)
+    short int hours;   // Р§Р°СЃС‹ (0-23)
+    short int minutes; // РњРёРЅСѓС‚С‹ (0-59)
 
 public:
-    Time();                            // Конструктор по умолчанию
-    Time(short int h, short int m);    // Конструктор с параметрами
-    Time(const Time& other);           // Конструктор копирования
+    Time();                            // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+    Time(short int h, short int m);    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
+    Time(const Time& other);           // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 
-    Time subtract(const Time& other) const; // Метод вычитания времени
+    Time subtract(const Time& other) const; // РњРµС‚РѕРґ РІС‹С‡РёС‚Р°РЅРёСЏ РІСЂРµРјРµРЅРё
 
-    friend ostream& operator<<(ostream& os, const Time& t); // Перегрузка оператора вывода
+    friend ostream& operator<<(ostream& os, const Time& t); // РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° РІС‹РІРѕРґР°
 
-    void input(); // Метод для ввода времени с клавиатуры
+    void input(); // РњРµС‚РѕРґ РґР»СЏ РІРІРѕРґР° РІСЂРµРјРµРЅРё СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
 
-    // Унарные операции
-    Time& operator++();   // Префиксный инкремент
-    Time operator++(int); // Постфиксный инкремент
-    Time& operator--();   // Префиксный декремент
-    Time operator--(int); // Постфиксный декремент
+    // РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
+    Time& operator++();   // РџСЂРµС„РёРєСЃРЅС‹Р№ РёРЅРєСЂРµРјРµРЅС‚
+    Time operator++(int); // РџРѕСЃС‚С„РёРєСЃРЅС‹Р№ РёРЅРєСЂРµРјРµРЅС‚
+    Time& operator--();   // РџСЂРµС„РёРєСЃРЅС‹Р№ РґРµРєСЂРµРјРµРЅС‚
+    Time operator--(int); // РџРѕСЃС‚С„РёРєСЃРЅС‹Р№ РґРµРєСЂРµРјРµРЅС‚
 
-    // Операции приведения типа
-    operator int() const;       // Неявное преобразование в int (количество минут)
-    explicit operator bool() const; // Явное преобразование в bool
+    // РћРїРµСЂР°С†РёРё РїСЂРёРІРµРґРµРЅРёСЏ С‚РёРїР°
+    operator int() const;       // РќРµСЏРІРЅРѕРµ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РІ int (РєРѕР»РёС‡РµСЃС‚РІРѕ РјРёРЅСѓС‚)
+    explicit operator bool() const; // РЇРІРЅРѕРµ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РІ bool
 
-    // Бинарные операции сравнения
+    // Р‘РёРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
     bool operator<(const Time& other) const;
     bool operator>(const Time& other) const;
 };

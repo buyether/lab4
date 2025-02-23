@@ -1,21 +1,21 @@
-#include "Time.h"
+п»ї#include "Time.h"
 #include <limits>
 
 Time::Time() : hours(0), minutes(0) {}
 
-// конструктор с параметрами
+// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
 Time::Time(short int h, short int m) {
     if (h < 0 || h > 23 || m < 0 || m > 59) {
-        throw std::invalid_argument("Неверное значение времени! Часы должны быть от 0 до 23, а минуты от 0 до 59.");
+        throw std::invalid_argument("РќРµРІРµСЂРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІСЂРµРјРµРЅРё! Р§Р°СЃС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РѕС‚ 0 РґРѕ 23, Р° РјРёРЅСѓС‚С‹ РѕС‚ 0 РґРѕ 59.");
     }
     hours = h;
     minutes = m;
 }
 
-// конструктор копирования
+// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 Time::Time(const Time& other) : hours(other.hours), minutes(other.minutes) {}
 
-// метод вычитания времени
+// РјРµС‚РѕРґ РІС‹С‡РёС‚Р°РЅРёСЏ РІСЂРµРјРµРЅРё
 Time Time::subtract(const Time& other) const {
     int totalMinutes1 = hours * 60 + minutes;
     int totalMinutes2 = other.hours * 60 + other.minutes;
@@ -28,37 +28,37 @@ Time Time::subtract(const Time& other) const {
     return Time(diffMinutes / 60, diffMinutes % 60);
 }
 
-// перегрузка оператора вывода
+// РїРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° РІС‹РІРѕРґР°
 std::ostream& operator<<(std::ostream& os, const Time& t) {
     os << (t.hours < 10 ? "0" : "") << t.hours << ":"
         << (t.minutes < 10 ? "0" : "") << t.minutes;
     return os;
 }
 
-// метод ввода времени с клавиатуры
+// РјРµС‚РѕРґ РІРІРѕРґР° РІСЂРµРјРµРЅРё СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
 void Time::input() {
-    std::cout << "Введите часы (0-23): ";
+    std::cout << "Р’РІРµРґРёС‚Рµ С‡Р°СЃС‹ (0-23): ";
     std::cin >> hours;
     while (std::cin.fail() || hours < 0 || hours > 23) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Ошибка! Введите корректное значение часов (0-23): ";
+        std::cout << "РћС€РёР±РєР°! Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ С‡Р°СЃРѕРІ (0-23): ";
         std::cin >> hours;
     }
 
-    std::cout << "Введите минуты (0-59): ";
+    std::cout << "Р’РІРµРґРёС‚Рµ РјРёРЅСѓС‚С‹ (0-59): ";
     std::cin >> minutes;
     while (std::cin.fail() || minutes < 0 || minutes > 59) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Ошибка! Введите корректное значение минут (0-59): ";
+        std::cout << "РћС€РёР±РєР°! Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РјРёРЅСѓС‚ (0-59): ";
         std::cin >> minutes;
     }
 }
 
-// унарные операции
+// СѓРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 
-// префиксный инкремент (добавление минуты)
+// РїСЂРµС„РёРєСЃРЅС‹Р№ РёРЅРєСЂРµРјРµРЅС‚ (РґРѕР±Р°РІР»РµРЅРёРµ РјРёРЅСѓС‚С‹)
 Time& Time::operator++() {
     ++minutes;
     if (minutes == 60) {
@@ -71,14 +71,14 @@ Time& Time::operator++() {
     return *this;
 }
 
-// постфиксный инкремент (добавление минуты)
+// РїРѕСЃС‚С„РёРєСЃРЅС‹Р№ РёРЅРєСЂРµРјРµРЅС‚ (РґРѕР±Р°РІР»РµРЅРёРµ РјРёРЅСѓС‚С‹)
 Time Time::operator++(int) {
     Time temp = *this;
     ++(*this);
     return temp;
 }
 
-// Префиксный декремент (вычитание минуты)
+// РџСЂРµС„РёРєСЃРЅС‹Р№ РґРµРєСЂРµРјРµРЅС‚ (РІС‹С‡РёС‚Р°РЅРёРµ РјРёРЅСѓС‚С‹)
 Time& Time::operator--() {
     if (minutes == 0) {
         minutes = 59;
@@ -95,33 +95,33 @@ Time& Time::operator--() {
     return *this;
 }
 
-// постфиксный декремент (вычитание минуты)
+// РїРѕСЃС‚С„РёРєСЃРЅС‹Р№ РґРµРєСЂРµРјРµРЅС‚ (РІС‹С‡РёС‚Р°РЅРёРµ РјРёРЅСѓС‚С‹)
 Time Time::operator--(int) {
     Time temp = *this;
     --(*this);
     return temp;
 }
 
-// операции приведения типа
+// РѕРїРµСЂР°С†РёРё РїСЂРёРІРµРґРµРЅРёСЏ С‚РёРїР°
 
-// неявное преобразование в int (количество минут)
+// РЅРµСЏРІРЅРѕРµ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РІ int (РєРѕР»РёС‡РµСЃС‚РІРѕ РјРёРЅСѓС‚)
 Time::operator int() const {
     return hours * 60 + minutes;
 }
 
-// явное преобразование в bool
+// СЏРІРЅРѕРµ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РІ bool
 Time::operator bool() const {
     return hours != 0 || minutes != 0;
 }
 
-// бинарные операции сравнения
+// Р±РёРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 
-// меньше (<)
+// РјРµРЅСЊС€Рµ (<)
 bool Time::operator<(const Time& other) const {
     return static_cast<int>(*this) < static_cast<int>(other);
 }
 
-// больше (>)
+// Р±РѕР»СЊС€Рµ (>)
 bool Time::operator>(const Time& other) const {
     return static_cast<int>(*this) > static_cast<int>(other);
 }
